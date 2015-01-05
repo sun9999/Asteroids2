@@ -15,10 +15,18 @@ private:
 	int mRatio;
 	CCSprite* createLeaf(const char*, CCPoint);
 public:
-    static Background* Create(const char*, float);
+    static Background* create(const char*, float);
     bool init(const char*, float);
     virtual bool init();
     virtual void update(float);
+
+	int getRatio() const {
+		return mRatio;
+	}
+
+	void setRatio(int ratio) {
+		mRatio = ratio;
+	}
 };
 
 #endif

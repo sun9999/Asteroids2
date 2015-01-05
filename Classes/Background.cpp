@@ -5,7 +5,7 @@
 
 USING_NS_CC;
 
-Background* Background::Create(const char *filename, float ratio) {
+Background* Background::create(const char *filename, float ratio) {
     Background *pRet = new Background();
     if (pRet && pRet->init(filename, ratio)) {
     	return pRet;
@@ -39,7 +39,6 @@ bool Background:: init(const char* filename, float ratio) {
 	addChild(createLeaf(filename, ccp(0,1)));
 	addChild(createLeaf(filename, ccp(0,0)));
 	addChild(createLeaf(filename, ccp(1,0)));
-
 	CCSprite* leaf = createLeaf(filename, ccp(1,1));
 	addChild(leaf);
 

@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/HelloWorldScene.cpp"
-            timestampString = "441831751.393555"
+            timestampString = "442147471.501361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "HelloWorld::init()"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "HelloWorld::arrangeBuckets(float min_x, float max_x, float min_y, float max_y, const CCPoint&amp; origin, const CCSize&amp; visibleSize, CCArray* objBuckets[COLLISION_BUCKET_WIDTH][COLLISION_BUCKET_HEIGHT])"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

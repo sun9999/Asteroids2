@@ -27,9 +27,21 @@ static __TYPE__* create(const char* filename) { \
 
 USING_NS_CC;
 
+/**
+ A Note around the vector angle:
+ The angele stored here is the vector angle,
+ it indicates the position that the vector pointing to;
+ While the rotation angle indicates where the object facing.
+ With the support of this angle, the object is possible to face north, but
+ moving south. All the vector for my design are on default facing downward,
+ hence, while the mAngle is zero degree, the vector is pointing south, rather than
+ pointing north. Therefore, there is a 180 degree differences between the rotation angle and
+ this vector angle.
+ */
+
 class MoveableObject : public CCSprite {
 private:
-	float mAngle;			//Rotation angle (degree)
+	float mAngle;			//vector angle (degree)
 	float mSpeed;			//movement/frame
 	float mAcceleration;
 public:

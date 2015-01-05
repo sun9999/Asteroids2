@@ -6,6 +6,7 @@
 #include "Spaceship.h"
 #include "Missle.h"
 #include "MoveableObject.h"
+#include "EncryptedInt.h"
 #include <vector>
 
 USING_NS_CC;
@@ -13,23 +14,40 @@ using namespace std;
 
 class HelloWorld : public CCLayer {
 private:
-	int mScore; //TODO use EncryptedInt
-    int mMissileCount; //TODO
-    int mSpaceshipCount; //TODO
+	EncryptedInt mScore;
+    EncryptedInt mMissileCount;
+    EncryptedInt mSpaceshipCount;
     CCNode* mAsteroids;
     CCNode* mBullets;
     CCNode* mMissiles;
+    CCNode* mBackgrounds;
     Spaceship* mSpaceship;
 
+    CCLabelTTF* mScoreLabel;
+    CCLabelTTF* mSpaceshipCountLabel;
+    CCLabelTTF* mMissileCountLabel;
+    
 	void arrangeBuckets(float min_x, float max_x, float min_y, float max_y,
 			const CCPoint& origin, const CCSize& visibleSize,
 			CCArray* objBuckets[COLLISION_BUCKET_WIDTH][COLLISION_BUCKET_HEIGHT]);
     
     Asteroids* getClosestAsteroid(CCPoint);
+
+    CCParticleExplosion* createExplosion(const char*, CCPoint, float, float);
+    
+    float calcAngleWithRandomFactor(const CCPoint&, const CCPoint&);
+
+    const char* scoreText();
+    const char* lifeText();
+    const char* missileText();
+	void resetMissiles(Asteroids* asteroid);
+
 public:
     static CCScene* scene();
     
     virtual bool init();
+    
+    void fireBullet();
     
     void addAsteroid();
 
@@ -42,6 +60,30 @@ public:
     void fireMissileCallBack(CCObject*);
 
     CREATE_FUNC(HelloWorld);
+    
+    CCLabelTTF* getScoreLabel() {
+        return mScoreLabel;
+    }
+    
+    void setScoreLabel(CCLabelTTF* label) {
+        mScoreLabel = label;
+    }
+    
+    CCLabelTTF* getSpaceshipCountLabel() {
+        return mSpaceshipCountLabel;
+    }
+    
+    void setSpaceshipCountLabel(CCLabelTTF* label) {
+        mSpaceshipCountLabel = label;
+    }
+    
+    CCLabelTTF* getMissileCountLabel() {
+        return mMissileCountLabel;
+    }
+    
+    void setMissileCountLabel(CCLabelTTF* label) {
+        mMissileCountLabel = label;
+    }
 
 	Spaceship* getSpaceship() {
 		return mSpaceship;
@@ -63,6 +105,9 @@ public:
 	}
 
 	CCNode* getBullets() {
+        if (mBullets==NULL) {
+            mBullets= CCNode::create();
+        }
 		return mBullets;
 	}
 
@@ -81,7 +126,7 @@ public:
 		mMissiles = missiles;
 	}
 
-	int getMissileCount() {
+	EncryptedInt getMissileCount() {
 		return mMissileCount;
 	}
 
@@ -89,7 +134,7 @@ public:
 		mMissileCount = missileCount;
 	}
 
-	int getSpaceshipCount() {
+	EncryptedInt getSpaceshipCount() {
 		return mSpaceshipCount;
 	}
 
@@ -97,12 +142,20 @@ public:
 		mSpaceshipCount = spaceshipCount;
 	}
 
-	int getScore() {
+	EncryptedInt getScore() {
 		return mScore;
 	}
 
 	void setScore(int score) {
 		mScore = score;
+	}
+
+	CCNode* getBackgrounds() {
+		return mBackgrounds;
+	}
+
+	void setBackgrounds(CCNode* backgrounds) {
+		mBackgrounds = backgrounds;
 	}
 };
 

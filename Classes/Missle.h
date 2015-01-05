@@ -18,7 +18,7 @@ class Missle: public MoveableObject {
 private:
 	CCNode* mTarget;
 public:
-    static Missle* Create(const char*, const CCPoint, CCNode*);
+    static Missle* create(const char*, const CCPoint, CCNode*);
 
 	bool init(const char*);
 
@@ -27,9 +27,6 @@ public:
 	virtual bool init();
 
 	virtual void update(float);
-    
-    void changeDirection();
-    
 
     CCNode* getTarget() const {
 		return mTarget;

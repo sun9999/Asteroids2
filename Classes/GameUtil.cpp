@@ -93,9 +93,9 @@ float GameUtil::calcAngle(CCPoint targetPos, CCPoint objPos) {
 		angle = atan(abs((objPos.y-targetPos.y)/(objPos.x-targetPos.x))) * RADIAN + 270;
 	}
     
-    CCLog("p1 location x:%5.2f, y:%5.2f", targetPos.x, targetPos.y);
-	CCLog("p2 location x:%5.2f, y:%5.2f", objPos.x, objPos.y);
-    CCLog("Angle: %5.2f", angle);
+//	CCLog("p1 location x:%5.2f, y:%5.2f", targetPos.x, targetPos.y);
+//	CCLog("p2 location x:%5.2f, y:%5.2f", objPos.x, objPos.y);
+//	CCLog("Angle: %5.2f", angle);
     
     if (angle<0 || angle>360) {
         CCLOGWARN("CCPoint1 x:%5.2f y:%5.2f, CCPoint2 x:%5.2f y:%5.2f, Angle: %5.2f", targetPos.x, targetPos.y, objPos.x, objPos.y, angle);

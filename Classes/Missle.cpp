@@ -7,10 +7,11 @@
 
 #include "Missle.h"
 #include "GameUtil.h"
+//#include <cmath>
 
 USING_NS_CC;
 
-Missle* Missle::Create(const char* filename, const CCPoint pos, CCNode* target) {
+Missle* Missle::create(const char* filename, const CCPoint pos, CCNode* target) {
     Missle *pRet = new Missle();
     if (pRet && pRet->init(filename, pos, target)) {
     	return pRet;
@@ -31,7 +32,7 @@ bool Missle::init(const char* filename) {
 	initWithFile(filename);
 	setAnchorPoint(ccp(0.5, 0.2));
 	setTag(MISSILE);
-	setSpeed(1.8);
+	setSpeed(MISSILE_SPEED);
 
 	return true;
 }
@@ -42,10 +43,6 @@ bool Missle::init(const char* filename, const CCPoint pos, CCNode* target) {
     setTarget(target);
 	setPosition(pos);
     scheduleUpdate();
-//	if (getTarget()!=NULL) {
-//		setAngle(GameUtil::calcAngle(getTarget()->getPosition(), getPosition()));
-//	}
-//    schedule(schedule_selector(Missle::changeDirection), 0, 0, .5);
 
 	return true;
 }
@@ -53,10 +50,34 @@ bool Missle::init(const char* filename, const CCPoint pos, CCNode* target) {
 void Missle::update(float delta) {
     if (getTarget()!=NULL) {
         
-        float angle = GameUtil::calcAngle(getTarget()->getPosition(), getPosition());
+//        float objectRleatedAngle = GameUtil::calcAngle(getTarget()->getPosition(), getPosition());
+//
+//        CCLog("x:%5.2f, y:%5.2f", getTarget()->getPositionX(), getTarget()->getPositionY());
+//        CCLog("objectRleatedAngle: %5.2f, missile angle: %5.2f", objectRleatedAngle, getAngle());
+//        
+//        float angleDifferences = getAngle()-objectRleatedAngle-180;
+//        
+//        float turningAngle=180;
+//        
+//        if (angleDifferences<0) { //turn left
+//            turningAngle = (abs(angleDifferences)>MAX_MISSLE_ANGLE) ? getAngle()+MAX_MISSLE_ANGLE : getAngle()+angleDifferences;
+//            //            turningAngle = (angleDifferences>MAX_MISSLE_ANGLE) ? MAX_MISSLE_ANGLE : angleDifferences;
+//            if (turningAngle>360) {
+//                turningAngle =0;
+//            }
+//        } else { //turn right
+//            turningAngle = (abs(angleDifferences)>MAX_MISSLE_ANGLE) ? getAngle()-MAX_MISSLE_ANGLE : getAngle()-angleDifferences;
+//            if (turningAngle<0) {
+//                turningAngle=360;
+//            }
+//        }
         
-        float maxAngle = getAngle()*1.03;
-        float minAngle = getAngle()*.97;
+
+
+        float angle = GameUtil::calcAngle(getTarget()->getParent()->convertToWorldSpace(getTarget()->getPosition()), getPosition());
+        
+        float maxAngle = getAngle()*1.02;
+        float minAngle = getAngle()*0.98;
         
         if (angle<minAngle) {
             angle = minAngle;
@@ -64,12 +85,10 @@ void Missle::update(float delta) {
             angle = maxAngle;
         }
         
+//        setAngle(GameUtil::calcAngle(getTarget()->getParent()->convertToWorldSpace(getTarget()->getPosition()), getPosition()));
         setAngle(angle);
         setRotation(getAngle() -180);
     }
 
 	setPosition(GameUtil::calcPositionAfterMovment(getPosition(), getAngle(), getSpeed()));
-}
-
-void Missle::changeDirection() {
 }

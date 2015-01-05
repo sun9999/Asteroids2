@@ -21,6 +21,9 @@ public:
     virtual bool init();
     
     virtual bool init(const char*);
+
+private:
+	CCAnimation* createAnimation();
 };
 
 

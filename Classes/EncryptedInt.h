@@ -8,17 +8,32 @@
 #ifndef ENCRYPTEDINT_H_
 #define ENCRYPTEDINT_H_
 
+#include "cocos2d.h"
+
+USING_NS_CC;
+
 class EncryptedInt {
 private:
+    bool isGeneratedRandomKey;
+    int randomKey;
 	int mEncrypted;
-	int decrypt();
+	int encrypt(int);
+protected:
+    int getRandomKey();
 public:
+	EncryptedInt();
 	EncryptedInt(int raw);
 	~EncryptedInt();
+    
+    int getEncryptedValue(){return mEncrypted;}    
+    int decrypt();
 
 	operator int() {return decrypt();}
-	int operator = (int val) {EncryptedInt(val); return val;}
-	int operator += (int val) {EncryptedInt(val + decrypt()); return decrypt();}
+	int operator = (int val) {mEncrypted=encrypt(val); return val;}
+	int operator += (int val) {mEncrypted=encrypt(decrypt()+val); return decrypt();}
+	int operator -= (int val) {mEncrypted=encrypt(decrypt()-val); return decrypt();}
+	int operator ++ (int val) {mEncrypted=encrypt(decrypt()+1); return decrypt();}
+	int operator -- (int val) {mEncrypted=encrypt(decrypt()-1); return decrypt();}
 
 };
 

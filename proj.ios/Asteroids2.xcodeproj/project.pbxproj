@@ -242,7 +242,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2F18EBA11A592FC6009B5553 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F18EB9F1A592FC6009B5553 /* Bullet.cpp */; };
 		2F560F521A4CBB8800E10FD2 /* vtc in Resources */ = {isa = PBXBuildFile; fileRef = 2F560F511A4CBB8800E10FD2 /* vtc */; };
+		2F80C5021A57174F00A21124 /* EncryptedInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F80C5001A57174F00A21124 /* EncryptedInt.cpp */; };
 		2FAF85DE1A55A6F900B9C915 /* Missle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF85DC1A55A6F900B9C915 /* Missle.cpp */; };
 		2FAF85E11A55B63600B9C915 /* Spaceship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF85DF1A55B63600B9C915 /* Spaceship.cpp */; };
 		2FC4A1891A49680300E00A54 /* arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4A1661A49680300E00A54 /* arial.ttf */; };
@@ -776,7 +778,11 @@
 		1D6058910D05DD3D006BFB54 /* Asteroids2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asteroids2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2F18EB9F1A592FC6009B5553 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		2F18EBA01A592FC6009B5553 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		2F560F511A4CBB8800E10FD2 /* vtc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vtc; sourceTree = "<group>"; };
+		2F80C5001A57174F00A21124 /* EncryptedInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EncryptedInt.cpp; sourceTree = "<group>"; };
+		2F80C5011A57174F00A21124 /* EncryptedInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptedInt.h; sourceTree = "<group>"; };
 		2FAF85DC1A55A6F900B9C915 /* Missle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Missle.cpp; sourceTree = "<group>"; };
 		2FAF85DD1A55A6F900B9C915 /* Missle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missle.h; sourceTree = "<group>"; };
 		2FAF85DF1A55B63600B9C915 /* Spaceship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spaceship.cpp; sourceTree = "<group>"; };
@@ -1328,25 +1334,29 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2FAF85DF1A55B63600B9C915 /* Spaceship.cpp */,
-				2FAF85E01A55B63600B9C915 /* Spaceship.h */,
-				2FAF85DC1A55A6F900B9C915 /* Missle.cpp */,
-				2FAF85DD1A55A6F900B9C915 /* Missle.h */,
 				2FCD768D1A4F56ED00B7133C /* AppDelegate.h */,
+				2FCD76951A4F56ED00B7133C /* AppDelegate.cpp */,
 				2FCD768E1A4F56ED00B7133C /* AppMacros.h */,
 				2FCD768F1A4F56ED00B7133C /* Asteroids.h */,
-				2FCD76901A4F56ED00B7133C /* Background.h */,
-				2FCD76911A4F56ED00B7133C /* GameStart.h */,
-				2FCD76921A4F56ED00B7133C /* GameUtil.h */,
-				2FCD76931A4F56ED00B7133C /* HelloWorldScene.h */,
-				2FCD76941A4F56ED00B7133C /* MoveableObject.h */,
-				2FCD76951A4F56ED00B7133C /* AppDelegate.cpp */,
 				2FCD76961A4F56ED00B7133C /* Asteroids.cpp */,
+				2FCD76901A4F56ED00B7133C /* Background.h */,
 				2FCD76971A4F56ED00B7133C /* Background.cpp */,
+				2F18EBA01A592FC6009B5553 /* Bullet.h */,
+				2F18EB9F1A592FC6009B5553 /* Bullet.cpp */,
+				2F80C5011A57174F00A21124 /* EncryptedInt.h */,
+				2F80C5001A57174F00A21124 /* EncryptedInt.cpp */,
+				2FCD76911A4F56ED00B7133C /* GameStart.h */,
 				2FCD76981A4F56ED00B7133C /* GameStart.cpp */,
+				2FCD76921A4F56ED00B7133C /* GameUtil.h */,
 				2FCD76991A4F56ED00B7133C /* GameUtil.cpp */,
+				2FCD76931A4F56ED00B7133C /* HelloWorldScene.h */,
 				2FCD769A1A4F56ED00B7133C /* HelloWorldScene.cpp */,
+				2FAF85DD1A55A6F900B9C915 /* Missle.h */,
+				2FAF85DC1A55A6F900B9C915 /* Missle.cpp */,
+				2FCD76941A4F56ED00B7133C /* MoveableObject.h */,
 				2FCD769B1A4F56ED00B7133C /* MoveableObject.cpp */,
+				2FAF85E01A55B63600B9C915 /* Spaceship.h */,
+				2FAF85DF1A55B63600B9C915 /* Spaceship.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -2253,11 +2263,13 @@
 				15C0B55D196D412F007F909D /* CCDecorativeDisplay.cpp in Sources */,
 				15A3DAEB1682F8A6002FB0C5 /* CDAudioManager.m in Sources */,
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
+				2F80C5021A57174F00A21124 /* EncryptedInt.cpp in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				15C0B554196D412F007F909D /* CCNodeReader.cpp in Sources */,
 				15C0B551196D412F007F909D /* CCActionTimeline.cpp in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
+				2F18EBA11A592FC6009B5553 /* Bullet.cpp in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
 				15C0B58D196D412F007F909D /* ListViewReader.cpp in Sources */,
 				15C0B57E196D412F007F909D /* UILoadingBar.cpp in Sources */,

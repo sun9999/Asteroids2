@@ -9,7 +9,7 @@
 #define GAMEUTIL_H_
 
 #define INITIAL_SPACESHIP_COUNT 5
-#define INITIAL_MISSILE_COUNT 999
+#define INITIAL_MISSILE_COUNT 99
 #define MENU_BORDER 5
 #define RADIAN 57.29577951308233 //1 rad = 180/pi
 #define PI 3.141592653589793
@@ -18,6 +18,10 @@
 #define RESISTANCE_FACTOR 0.9
 #define MAX_ASTEROIDS 25
 #define SCREEN_BUFFER 100
+
+#define MISSILE_SPEED 1.8
+#define BULLET_SPEED 2
+//#define MAX_MISSLE_ANGLE 3
 
 #define genIR(_FROM_, _TO_) GameUtil::getRandNumber((int)_FROM_, (int)_TO_)
 #define genLR(_FROM_, _TO_) GameUtil::getRandNumber((long)_FROM_, (long)_TO_)
@@ -38,6 +42,7 @@ enum {
 enum ObjectTag {
     GAME_MENU,
     GAME_MENU_OPTION,
+    LABEL,
     SPACESHIP,
     ASTEROID,
     MISSILE,

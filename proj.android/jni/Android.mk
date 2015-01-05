@@ -12,8 +12,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/HelloWorldScene.cpp \
                    ../../Classes/MoveableObject.cpp \
                    ../../Classes/Background.cpp \
+                   ../../Classes/Missle.cpp \
                    ../../Classes/Asteroids.cpp \
-                   ../../Classes/GameUtil.cpp
+                   ../../Classes/GameUtil.cpp \
+                   ../../Classes/Spaceship.cpp \
+                   ../../Classes/EncryptedInt.cpp \
+                   ../../Classes/Bullet.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

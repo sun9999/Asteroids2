@@ -10,6 +10,9 @@
 
 #define MIN_SIZE 0.1
 #define MAX_SIZE 0.3
+#define ASTEROID_CLASS_1 0.2
+#define ASTEROID_CLASS_2 0.3
+#define ASTEROID_BREAK_ANGLE 45
 
 #define MIN_SELF_ROTATION_DURATION 0.4
 #define MAX_SELF_ROTATION_DURATION 1.0
@@ -35,11 +38,15 @@ private:
 	float mSize;
 	float mSelfRotateDuration;
 	float mSelfRotateAngle;
-	float calcAngleWithRandomFactor(const CCPoint& central);
+//	float calcAngleWithRandomFactor(const CCPoint& central);
 public:
 	CREATE_FUNC2(Asteroids);
+
+	static Asteroids* create(const char*, const CCPoint, float angle);
     
     bool init(const char*);
+
+    bool init(const char*, const CCPoint, float);
 
 	virtual bool init();
     
