@@ -14,6 +14,9 @@ using namespace std;
 
 class HelloWorld : public CCLayer {
 private:
+    
+    float mAngle;
+    
 	EncryptedInt mScore;
     EncryptedInt mMissileCount;
     EncryptedInt mSpaceshipCount;
@@ -164,6 +167,10 @@ public:
     void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 
     void ccTouchesEnded( CCSet* pTouches, CCEvent* pEvent);
+    
+    float getAngle();
+    
+	void setAngle(float);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

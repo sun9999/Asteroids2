@@ -485,8 +485,22 @@ void HelloWorld::fireMissileCallBack(CCObject* pSender) {
 void HelloWorld::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
     getSpaceship()->setThrust(true);
     
+//    CCSetIterator it = pTouches->begin();
+//    CCTouch* pTouch = (CCTouch*)(*it);
+    
+    CCLayer::ccTouchesBegan(pTouches, pEvent);
 }
 
 void HelloWorld::ccTouchesEnded( CCSet* pTouches, CCEvent* pEvent) {
     getSpaceship()->setThrust(false);
+    
+    CCLayer::ccTouchesEnded(pTouches, pEvent);
+}
+
+void HelloWorld::setAngle(float angle) {
+	mAngle = angle;
+}
+
+float HelloWorld::getAngle() {
+	return mAngle;
 }
