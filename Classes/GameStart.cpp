@@ -9,6 +9,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameUtil.h"
+#include "Background.h"
 
 USING_NS_CC;
 using namespace std;
@@ -91,11 +92,22 @@ void GameStart::onEnter() {
     CCLabelTTF* label = createGameStartLabel("Touch the screen to start the game", "Maker Felt", 12, visibleSize, origin);
     label->setVisible(false);
     label->runAction(action3);
+    
+    CCNode* bkg = CCNode::create();
+    Background* bkg1 = Background::create("vtc/background_1.png", 3);
+    Background* bkg2 = Background::create("vtc/background_2.png", 3.3);
+    bkg->addChild(bkg1);
+    bkg->addChild(bkg2);
+    
 
 	this->addChild(pCocos2dxLogo, 1);
     this->addChild(gameBanner, 1);
 	this->addChild(createGameMenu(visibleSize, origin), 1);
 	this->addChild(label, 1);
+    addChild(bkg, 0);
+    
+    bkg1->scheduleUpdate();
+    bkg2->scheduleUpdate();
 
     this->setTouchEnabled(true);
 

@@ -15,6 +15,8 @@
 USING_NS_CC;
 
 class Spaceship: public MoveableObject {
+private:
+    bool mThrust;
 public:
     CREATE_FUNC2(Spaceship)
     
@@ -22,7 +24,14 @@ public:
     
     virtual bool init(const char*);
 
-private:
+	bool isThrust() const {
+		return mThrust;
+	}
+
+	void setThrust(bool thrust) {
+		mThrust = thrust;
+	}
+
 	CCAnimation* createAnimation();
 };
 

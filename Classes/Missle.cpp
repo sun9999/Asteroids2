@@ -7,7 +7,7 @@
 
 #include "Missle.h"
 #include "GameUtil.h"
-//#include <cmath>
+#include <cmath>
 
 USING_NS_CC;
 
@@ -50,8 +50,8 @@ bool Missle::init(const char* filename, const CCPoint pos, CCNode* target) {
 void Missle::update(float delta) {
     if (getTarget()!=NULL) {
         
-//        float objectRleatedAngle = GameUtil::calcAngle(getTarget()->getPosition(), getPosition());
-//
+//        float objectRleatedAngle = GameUtil::calcAngle(getTarget()->getParent()->convertToWorldSpace(getTarget()->getPosition()), getParent()->convertToWorldSpace(getPosition()));
+        
 //        CCLog("x:%5.2f, y:%5.2f", getTarget()->getPositionX(), getTarget()->getPositionY());
 //        CCLog("objectRleatedAngle: %5.2f, missile angle: %5.2f", objectRleatedAngle, getAngle());
 //        
@@ -71,13 +71,15 @@ void Missle::update(float delta) {
 //                turningAngle=360;
 //            }
 //        }
-        
+//        
+//        setAngle(turningAngle);
+//        setRotation(getAngle() -180);
 
 
         float angle = GameUtil::calcAngle(getTarget()->getParent()->convertToWorldSpace(getTarget()->getPosition()), getPosition());
         
-        float maxAngle = getAngle()*1.02;
-        float minAngle = getAngle()*0.98;
+        float maxAngle = getAngle()*1.03;
+        float minAngle = getAngle()*0.97;
         
         if (angle<minAngle) {
             angle = minAngle;
@@ -85,7 +87,6 @@ void Missle::update(float delta) {
             angle = maxAngle;
         }
         
-//        setAngle(GameUtil::calcAngle(getTarget()->getParent()->convertToWorldSpace(getTarget()->getPosition()), getPosition()));
         setAngle(angle);
         setRotation(getAngle() -180);
     }

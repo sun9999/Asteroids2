@@ -151,12 +151,19 @@ public:
 	}
 
 	CCNode* getBackgrounds() {
+        if (mBackgrounds==NULL) {
+            mBackgrounds = CCNode::create();
+        }
 		return mBackgrounds;
 	}
 
 	void setBackgrounds(CCNode* backgrounds) {
 		mBackgrounds = backgrounds;
 	}
+    
+    void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
+
+    void ccTouchesEnded( CCSet* pTouches, CCEvent* pEvent);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

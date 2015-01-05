@@ -21,7 +21,7 @@
 
 #define MISSILE_SPEED 1.8
 #define BULLET_SPEED 2
-//#define MAX_MISSLE_ANGLE 3
+#define MAX_MISSLE_ANGLE 5
 
 #define genIR(_FROM_, _TO_) GameUtil::getRandNumber((int)_FROM_, (int)_TO_)
 #define genLR(_FROM_, _TO_) GameUtil::getRandNumber((long)_FROM_, (long)_TO_)
@@ -42,6 +42,7 @@ enum {
 enum ObjectTag {
     GAME_MENU,
     GAME_MENU_OPTION,
+    BACKGROUND,
     LABEL,
     SPACESHIP,
     ASTEROID,

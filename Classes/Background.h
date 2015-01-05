@@ -10,7 +10,7 @@
 
 USING_NS_CC;
 
-class Background : public MoveableObject {
+class Background : public CCNode {
 private:
 	int mRatio;
 	CCSprite* createLeaf(const char*, CCPoint);
@@ -19,6 +19,7 @@ public:
     bool init(const char*, float);
     virtual bool init();
     virtual void update(float);
+    void update(CCPoint displacement);
 
 	int getRatio() const {
 		return mRatio;

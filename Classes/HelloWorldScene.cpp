@@ -9,6 +9,7 @@
 #include "AppMacros.h"
 #include "Bullet.h"
 #include "SimpleAudioEngine.h"
+#include "Background.h"
 #include <iostream>
 #include <string>
 
@@ -125,29 +126,36 @@ bool HelloWorld::init() {
     CCMenu* pMenu = CCMenu::create(pCloseItem, pPauseOrResume, pFireMissile, NULL);
     pMenu->setPosition(CCPointZero);
     pMenu->setTag(GAME_MENU);
-    addChild(pMenu, 1);
+    addChild(pMenu, 2);
 
     setSpaceship(Spaceship::create("vtc/SHIP_A_01.png"));
     getSpaceship()->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     getSpaceship()->setTag(SPACESHIP);
     
-//    getSpaceship()->setAngle(90); //TODO remove this
-    getSpaceship()->setRotation(getSpaceship()->getAngle()-180); //TODO remove this
-    
-    addChild(getSpaceship(), 0);
+    addChild(getSpaceship(), 1);
     CCLog("spaceship h:%5.2f, w:%5.2f", getSpaceship()->boundingBox().size.height, getSpaceship()->boundingBox().size.width);
 
     for (int i=0; i<genIR(15, 20); i++) {
     	CCPoint pos = getAsteroids()->convertToNodeSpace(GameUtil::genRandCCP(origin, visibleSize, SCREEN_BUFFER));
         getAsteroids()->addChild(Asteroids::create("vtc/rock.png", pos, calcAngleWithRandomFactor(central, pos)));
     }
-    addChild(getAsteroids());
-    addChild(getBullets());
-    addChild(getMissiles());
     
-    schedule(schedule_selector(HelloWorld::fireBullet), .5);  //automatically fire bullet for every .5 second
+    
+    Background* bkg1 = Background::create("vtc/background_1.png", 3);
+    Background* bkg2 = Background::create("vtc/background_2.png", 3.3);
+    getBackgrounds()->addChild(bkg1, 0);
+    getBackgrounds()->addChild(bkg2, 0);
+    
+    addChild(getAsteroids(), 1);
+    addChild(getBullets(), 1);
+    addChild(getMissiles(), 1);
+    addChild(getBackgrounds(), 0);
+    
+    schedule(schedule_selector(HelloWorld::fireBullet), 1);  //automatically fire bullet for every second
     schedule(schedule_selector(HelloWorld::addAsteroid), 2); //automatically add asteroid for every 2 second
     schedule(schedule_selector(HelloWorld::updateGame));
+    
+    setTouchEnabled(true);
 
     return true;
 }
@@ -284,6 +292,12 @@ CCParticleExplosion* HelloWorld::createExplosion(const char* image, CCPoint pos,
 }
 
 void HelloWorld::updateGame(float delta) {
+    
+    if (getSpaceship()->isThrust()) {
+        
+    } else {
+    }
+    
 	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     CCArray* objBuckets[COLLISION_BUCKET_WIDTH][COLLISION_BUCKET_HEIGHT] = {NULL};
@@ -465,4 +479,14 @@ void HelloWorld::fireMissileCallBack(CCObject* pSender) {
     getMissiles()->addChild(pMissile);
     setMissileCount(((int) getMissileCount())-1);
     getMissileCountLabel()->setString(missileText());
+}
+
+
+void HelloWorld::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
+    getSpaceship()->setThrust(true);
+    
+}
+
+void HelloWorld::ccTouchesEnded( CCSet* pTouches, CCEvent* pEvent) {
+    getSpaceship()->setThrust(false);
 }
